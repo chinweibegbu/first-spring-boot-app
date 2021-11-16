@@ -12,7 +12,7 @@
 	<artifactId>course-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>course-app</name>
-	<description>Sample app built using Spring Boot according to a AmigosCode course</description>
+	<description>Sample app built using Spring Boot according to an AmigosCode course</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
