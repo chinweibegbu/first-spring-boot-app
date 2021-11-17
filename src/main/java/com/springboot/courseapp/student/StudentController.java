@@ -1,6 +1,8 @@
 package com.springboot.courseapp.student;
 
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -9,6 +11,7 @@ public class StudentController {
 	
 	private final StudentService studentService;
 	
+	@Autowired
 	public StudentController(StudentService studentService) {
 		this.studentService = studentService;
 	}
