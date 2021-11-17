@@ -51,8 +51,28 @@ public class StudentService {
 		}
 		
 		Student studentToUpdate = studentRepository.getById(studentId);
-		studentToUpdate.setName(student.getName());
-		studentToUpdate.setEmail(student.getEmail());
+		String newName = student.getName();
+		String newEmail = student.getEmail();
+		
+		if(!(newName == null)) {
+			if (newName .length() > 0 && studentToUpdate.getName() != newName) {
+				studentToUpdate.setName(student.getName());
+			} else if(newName .length() <= 0) {
+				throw new IllegalStateException("Name cannot be blank");
+			}
+		}
+		
+		Optional<Student> studentWithEmail = studentRepository.getStudentByEmail(student.getEmail());
+		
+		if(studentWithEmail.isPresent()) {
+			throw new IllegalStateException("New email already exists");
+		} else if(!(newEmail == null)) {
+			if(newEmail.length() > 0 && studentToUpdate.getEmail() != newEmail) {
+				studentToUpdate.setEmail(student.getEmail());
+			} else if(newEmail.length() <= 0) {
+				throw new IllegalStateException("Email cannot be blank");
+			}
+		}
 		
 		studentRepository.save(studentToUpdate);
 	}
