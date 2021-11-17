@@ -2,7 +2,22 @@ package com.springboot.courseapp.student;
 
 import java.time.LocalDate;
 
+import javax.persistence.*;
+
+@Entity
+@Table
 public class Student {
+	
+	@Id
+	@SequenceGenerator(
+			name = "studentSequence",
+			sequenceName = "studentSequence",
+			allocationSize = 1
+	)
+	@GeneratedValue(
+			strategy = GenerationType.SEQUENCE,
+			generator = "studentSequence"
+	)
 	private long id;
 	private String name;
 	private String email;

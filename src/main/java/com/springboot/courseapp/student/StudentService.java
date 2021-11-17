@@ -4,15 +4,20 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
 
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.stereotype.*;
 
 @Service
 public class StudentService {
 	
+	private final StudentRepository studentRepository;
+	
+	@Autowired
+	public StudentService(StudentRepository studentRepository) {
+		this.studentRepository = studentRepository;
+	}
+	
 	public List<Student> getAllStudents() {
-		return List.of(
-				new Student(1L, "Ayoola Falugba", "ayofal@gmail.com", LocalDate.of(2000, Month.FEBRUARY, 14), 20),
-				new Student(1L, "Omone Oshiafi", "oshiafi1923@loyolajesuit.org", LocalDate.of(1983, Month.JUNE, 16), 30)
-				);
+		return studentRepository.findAll();
 	}
 }
