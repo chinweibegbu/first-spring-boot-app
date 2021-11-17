@@ -15,14 +15,12 @@ public class StudentConfig {
 			Student ayoola = new Student(
 					"Ayoola Falugba", 
 					"ayofal@gmail.com",
-					LocalDate.of(2000, Month.FEBRUARY, 14),
-					20
+					LocalDate.of(2000, Month.FEBRUARY, 14)
 			);
 			Student omone = new Student(
 					"Omone Oshiafi",
 					"oshiafi1923@loyolajesuit.org",
-					LocalDate.of(1983, Month.JUNE, 16),
-					30
+					LocalDate.of(1983, Month.JUNE, 16)
 			);
 			
 			repository.saveAll(List.of(ayoola, omone));
