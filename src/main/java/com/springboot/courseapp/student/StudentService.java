@@ -1,9 +1,6 @@
 package com.springboot.courseapp.student;
-
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.*;
-
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
@@ -43,5 +40,20 @@ public class StudentService {
 		
 		// Else, save the student
 		studentRepository.deleteById(studentId);
+	}
+
+	@Transactional
+	public void updateStudent(Student student, Long studentId) {
+		boolean exists = studentRepository.existsById(studentId);
+		
+		if(!exists) {
+			throw new IllegalStateException("Student with an id of " + studentId + " does not exist");
+		}
+		
+		Student studentToUpdate = studentRepository.getById(studentId);
+		studentToUpdate.setName(student.getName());
+		studentToUpdate.setEmail(student.getEmail());
+		
+		studentRepository.save(studentToUpdate);
 	}
 }
